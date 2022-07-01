@@ -30,8 +30,11 @@ class AppImage {
 //icon
   static String iconAdd = "assets/images/add.svg";
   static String iconHeart = "assets/images/heart.svg";
+  static String iconHeartFill = "assets/images/heartIconFill.svg";
   static String iconHome = "assets/images/home.svg";
+  static String iconHomeFill = "assets/images/homeIconFill.svg";
   static String iconSearch = "assets/images/search.svg";
+  static String iconSearchFill = "assets/images/searchIconFill.svg";
   static String iconCamera = "assets/images/camera.svg";
   static String iconWatch = "assets/images/watch.svg";
   static String iconSend = "assets/images/send.svg";

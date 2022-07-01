@@ -14,26 +14,14 @@ class FavoritePageView extends GetView<FavoritePageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 1,
-        toolbarHeight: 0,
-        backgroundColor: context.surface,
-        bottom: TabBar(
-          controller: controller.tabController,
-          unselectedLabelColor: Colors.grey,
-          labelColor: context.bodyText1.color,
-          indicatorColor: context.onSurface,
-          labelPadding: const EdgeInsets.symmetric(vertical: 10),
-          tabs: const [
-            Text(
-              "Following",
-              style: TextStyle(fontSize: 16),
-            ),
-            Text(
-              "You",
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+        elevation: 0,
+        leadingWidth: 0,
+        title: Text(
+          "Notification",
+          style: context.bodyText1
+              .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
         ),
+        backgroundColor: context.surface,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -41,14 +29,17 @@ class FavoritePageView extends GetView<FavoritePageController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   "Follow Requests",
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              const Divider(
-                height: 1,
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Divider(
+                  height: 1,
+                ),
               ),
               _FormNotification(
                 title: "New",

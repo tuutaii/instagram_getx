@@ -3,16 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:instagram/app/core/utilities/image.dart';
 import 'package:instagram/app/modules/favorite_page/views/favorite_page_view.dart';
-import 'package:instagram/app/modules/main_page/views/home_view.dart';
+import 'package:instagram/app/modules/home_page/views/home_page_view.dart';
 import 'package:instagram/app/modules/profile_view/views/profile_view_view.dart';
 import 'package:instagram/app/modules/search_view/views/search_view_view.dart';
 import 'package:instagram/app/modules/watch_page/views/watch_page_view.dart';
 
 import '../../../core/styles/style.dart';
-import '../controllers/main_page_controller.dart';
+import '../controllers/dashboard_controller.dart';
 
-class MainPageView extends GetView<MainPageController> {
-  const MainPageView({Key? key}) : super(key: key);
+class DashboardView extends GetView<DashboardController> {
+  const DashboardView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MainPageView extends GetView<MainPageController> {
         physics: const NeverScrollableScrollPhysics(),
         controller: controller.pageController,
         children: const [
-          HomeInstagramView(),
+          HomePageView(),
           SearchViewView(),
           WatchPageView(),
           FavoritePageView(),
@@ -33,7 +33,7 @@ class MainPageView extends GetView<MainPageController> {
   }
 }
 
-class _BottomNavigationBuilder extends GetView<MainPageController> {
+class _BottomNavigationBuilder extends GetView<DashboardController> {
   const _BottomNavigationBuilder({
     Key? key,
   }) : super(key: key);
@@ -51,49 +51,36 @@ class _BottomNavigationBuilder extends GetView<MainPageController> {
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
-            icon: controller.tabIndex.value == 0
-                ? SvgPicture.asset(
-                    AppImage.iconHome,
-                    color: context.onSurface,
-                  )
-                : SvgPicture.asset(
-                    AppImage.iconHome,
-                    color: context.onSurface.withOpacity(.5),
-                  ),
+            icon: SvgPicture.asset(
+              controller.tabIndex.value == 0
+                  ? AppImage.iconHomeFill
+                  : AppImage.iconHome,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: controller.tabIndex.value == 1
-                ? SvgPicture.asset(AppImage.iconSearch,
-                    color: context.onSurface)
-                : SvgPicture.asset(
-                    AppImage.iconSearch,
-                    color: context.onSurface.withOpacity(.5),
-                  ),
+            icon: SvgPicture.asset(
+              controller.tabIndex.value == 1
+                  ? AppImage.iconSearchFill
+                  : AppImage.iconSearch,
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: controller.tabIndex.value == 2
-                ? SvgPicture.asset(
-                    AppImage.iconWatch,
-                    color: context.onSurface,
-                  )
-                : SvgPicture.asset(
-                    AppImage.iconWatch,
-                    color: context.onSurface.withOpacity(.5),
-                  ),
-            label: 'Home',
+            icon: SvgPicture.asset(
+              AppImage.iconWatch,
+              color: controller.tabIndex.value == 2
+                  ? context.onSurface
+                  : context.onSurface.withOpacity(.5),
+            ),
+            label: 'Watch',
           ),
           BottomNavigationBarItem(
-            icon: controller.tabIndex.value == 3
-                ? SvgPicture.asset(
-                    AppImage.iconHeart,
-                    color: context.onSurface,
-                  )
-                : SvgPicture.asset(
-                    AppImage.iconHeart,
-                    color: context.onSurface.withOpacity(.5),
-                  ),
+            icon: SvgPicture.asset(
+              controller.tabIndex.value == 3
+                  ? AppImage.iconHeartFill
+                  : AppImage.iconHeart,
+            ),
             label: 'Favorite',
           ),
           BottomNavigationBarItem(
@@ -101,7 +88,7 @@ class _BottomNavigationBuilder extends GetView<MainPageController> {
               height: 30,
               child: Image.asset(AppImage.avt),
             ),
-            label: 'Home',
+            label: 'Profile',
           ),
         ],
       ),

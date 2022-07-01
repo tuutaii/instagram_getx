@@ -6,6 +6,7 @@ import 'package:instagram/app/modules/chat_page/models/chat_model.dart';
 import 'package:instagram/app/routes/app_pages.dart';
 import '../../../core/utilities/image.dart';
 import '../../../widgets/commons/app_button.dart';
+import '../../../widgets/commons/circle_avatar.dart';
 import '../../../widgets/commons/input_custom.dart';
 import '../controllers/chat_page_controller.dart';
 
@@ -146,26 +147,7 @@ class _ChatDetailWidget extends StatelessWidget {
         child: ListTile(
           horizontalTitleGap: 10,
           isThreeLine: false,
-          leading: SizedBox(
-            height: 80,
-            child: Container(
-              width: 60.0,
-              height: 60.0,
-              decoration: BoxDecoration(
-                border: Border.all(color: context.dividerColor, width: 1),
-                shape: BoxShape.circle,
-              ),
-              child: CircleAvatar(
-                backgroundColor: Get.isDarkMode
-                    ? Colors.white.withOpacity(.8)
-                    : Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Image.asset(chatModel.avtUrl),
-                ),
-              ),
-            ),
-          ),
+          leading: CustomCircleAvatar(chatModel.avtUrl),
           contentPadding: EdgeInsets.zero,
           title: Text(
             chatModel.userName,
@@ -205,6 +187,37 @@ class _ChatDetailWidget extends StatelessWidget {
               AppImage.iconCamera,
               color: context.onSurface,
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CircleAvatarCustom extends StatelessWidget {
+  const CircleAvatarCustom({
+    Key? key,
+    required this.avtUrl,
+  }) : super(key: key);
+  final String avtUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60.0,
+      height: 60.0,
+      decoration: BoxDecoration(
+        border: Border.all(color: context.dividerColor, width: 1),
+        shape: BoxShape.circle,
+      ),
+      child: CircleAvatar(
+        backgroundColor:
+            Get.isDarkMode ? Colors.white.withOpacity(.8) : Colors.white,
+        child: CircleAvatar(
+          radius: 60 / 2.5,
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage(
+            avtUrl,
           ),
         ),
       ),

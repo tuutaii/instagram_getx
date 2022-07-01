@@ -33,7 +33,7 @@ class WelcomePageView extends GetView<WelcomePageController> {
                 ),
               ),
               Text(
-                Get.arguments ?? "",
+                "",
                 style: context.bodyText1.copyWith(
                     fontWeight: FontWeight.w600, color: context.onBackground),
               ),
@@ -45,7 +45,7 @@ class WelcomePageView extends GetView<WelcomePageController> {
                   color: context.primary,
                   axisSize: MainAxisSize.max,
                   borderRadius: 5,
-                  onPressed: () => Get.offAndToNamed(Routes.mainPage,
+                  onPressed: () => Get.offAndToNamed(Routes.dashBoard,
                       arguments: Get.arguments),
                 ),
               ),

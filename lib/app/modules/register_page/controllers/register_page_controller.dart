@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import 'package:instagram/app/services/auth_services/auth_service.dart';
 
 import '../../../core/styles/style.dart';
-import '../../../routes/app_pages.dart';
+import '../../../services/auth_services/auth_service.dart';
 
-class LoginPageController extends GetxController {
+class RegisterPageController extends GetxController {
   AuthService get _auth => Get.find();
   final formKey = GlobalKey<FormState>();
   final isLoading = false.obs;
@@ -12,18 +11,20 @@ class LoginPageController extends GetxController {
   final emailController = TextEditingController();
   String get email => emailController.text;
 
+  final nameController = TextEditingController();
+  String get name => nameController.text;
+
   final passwordController = TextEditingController();
   String get password => passwordController.text;
 
-  void trySubmitLogin() {
+  void trySubmitSignUp() {
     final isValid = formKey.currentState!.validate();
     if (isValid) {
       isLoading(true);
       2.delay().whenComplete(() {
         isLoading(false);
         formKey.currentState!.save();
-        _auth.login(email.trim(), password.trim());
-        Get.toNamed(Routes.welcome);
+        _auth.singUp(email.trim(), password.trim(), name);
       });
       WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
     }

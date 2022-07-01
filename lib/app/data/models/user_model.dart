@@ -1,5 +1,5 @@
-class UserEntity {
-  const UserEntity({
+class UserModel {
+  const UserModel({
     required this.id,
     required this.firstName,
     required this.lastName,
@@ -13,7 +13,7 @@ class UserEntity {
   final String email;
   final String imageUrl;
 
-  factory UserEntity.fromJson(Map<String, dynamic> json) => UserEntity(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json['id'] ?? "",
         firstName: json['firstName'] ?? "",
         lastName: json['lastName'] ?? "",
@@ -28,12 +28,11 @@ class UserEntity {
         'email': email,
         'imageUrl': imageUrl,
       };
-  factory UserEntity.empty() => const UserEntity(
+  factory UserModel.empty() => const UserModel(
         id: "",
         firstName: "",
         lastName: "",
         email: "",
         imageUrl: "",
       );
-  List<Object?> get props => [id, firstName, lastName, email, imageUrl];
 }

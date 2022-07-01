@@ -27,7 +27,7 @@ class _HeartAnimationState extends State<HeartAnimation>
         milliseconds: widget.duration.inMilliseconds,
       ),
     );
-    scale = Tween<double>(begin: 1, end: .8).animate(ctr);
+    scale = Tween<double>(begin: 1, end: 0).animate(ctr);
   }
 
   @override

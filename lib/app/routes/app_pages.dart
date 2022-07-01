@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:instagram/app/modules/dashboard/bindings/dashboard_binding.dart';
+import 'package:instagram/app/modules/dashboard/views/dashboard_view.dart';
 
 import '../modules/camera_view/bindings/camera_view_binding.dart';
 import '../modules/camera_view/views/camera_view_view.dart';
@@ -11,13 +13,14 @@ import '../modules/edit_profile_view/views/edit_profile_view_view.dart';
 import '../modules/favorite_page/bindings/favorite_page_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home_page/bindings/home_page_binding.dart';
 import '../modules/login_page/bindings/login_page_binding.dart';
 import '../modules/login_page/views/login_page_view.dart';
-import '../modules/main_page/bindings/main_page_binding.dart';
-import '../modules/main_page/views/main_page_view.dart';
 import '../modules/post_detail_view/bindings/post_detail_view_binding.dart';
 import '../modules/post_detail_view/views/post_detail_view_view.dart';
 import '../modules/profile_view/bindings/profile_view_binding.dart';
+import '../modules/register_page/bindings/register_page_binding.dart';
+import '../modules/register_page/views/register_page_view.dart';
 import '../modules/search_view/bindings/search_view_binding.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
@@ -32,7 +35,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.login;
+  static const initial = Routes.profilePage;
 
   static final routes = [
     GetPage(
@@ -51,10 +54,11 @@ class AppPages {
       binding: LoginPageBinding(),
     ),
     GetPage(
-      name: _Paths.mainPage,
-      page: () => const MainPageView(),
+      name: _Paths.dashBoard,
+      page: () => const DashboardView(),
+      binding: DashboardBinding(),
       bindings: [
-        MainPageBinding(),
+        HomePageBinding(),
         ProfileViewBinding(),
         SearchViewBinding(),
         FavoritePageBinding(),
@@ -95,6 +99,11 @@ class AppPages {
       name: _Paths.chatDetailPage,
       page: () => const ChatDetailPageView(),
       binding: ChatDetailPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.registerPage,
+      page: () => const RegisterPageView(),
+      binding: RegisterPageBinding(),
     ),
   ];
 }

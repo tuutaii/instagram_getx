@@ -8,7 +8,7 @@ import 'package:instagram/app/routes/app_pages.dart';
 import '../../../core/styles/style.dart';
 import '../../../core/utilities/image.dart';
 import '../../../widgets/commons/app_button.dart';
-import '../../main_page/widgets/heart_animation.dart';
+import '../../home_page/widgets/heart_animation.dart';
 import '../controllers/watch_page_controller.dart';
 
 class WatchPageView extends GetView<WatchPageController> {

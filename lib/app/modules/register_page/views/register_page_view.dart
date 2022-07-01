@@ -1,17 +1,14 @@
 import 'package:flutter/gestures.dart';
-
 import 'package:get/get.dart';
-import 'package:instagram/app/core/utilities/image.dart';
-import 'package:instagram/app/routes/app_pages.dart';
-import 'package:instagram/app/widgets/commons/app_button.dart';
-import 'package:instagram/app/widgets/commons/input_custom.dart';
 
 import '../../../core/styles/style.dart';
-import '../../../widgets/bottom_text.dart';
-import '../controllers/login_page_controller.dart';
+import '../../../core/utilities/image.dart';
+import '../../../widgets/commons/app_button.dart';
+import '../../../widgets/commons/input_custom.dart';
+import '../controllers/register_page_controller.dart';
 
-class LoginPageView extends GetView<LoginPageController> {
-  const LoginPageView({Key? key}) : super(key: key);
+class RegisterPageView extends GetView<RegisterPageController> {
+  const RegisterPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +34,21 @@ class LoginPageView extends GetView<LoginPageController> {
                     padding: const EdgeInsets.symmetric(vertical: 40.0),
                     child: Image.asset(AppImage.logo),
                   ),
+                  Text(
+                    "Register",
+                    style: context.bodyText1
+                        .copyWith(fontSize: 35, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   InputCustom(
                       controller: controller.emailController,
                       radius: 5,
                       borderSide: BorderSide(
                         color: context.dividerColor,
                       ),
+                      labelText: "Email",
                       validator: (value) {
                         return controller.emailValidator(value!);
                       }),
@@ -50,78 +56,57 @@ class LoginPageView extends GetView<LoginPageController> {
                     height: 12.0,
                   ),
                   InputCustom(
+                    controller: controller.nameController,
+                    radius: 5,
+                    borderSide: BorderSide(
+                      color: context.dividerColor,
+                    ),
+                    labelText: "Username",
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  InputCustom(
                     controller: controller.passwordController,
                     radius: 5,
                     borderSide: BorderSide(color: context.dividerColor),
+                    labelText: "Password",
+                    isPassword: true,
+                    isShowSuffixIcon: true,
                     validator: (value) {
                       return controller.passwordValidator(value!);
                     },
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: AppButton(
-                      "For get password?",
-                      textColor: context.primary,
-                      type: ButtonType.text,
-                      onPressed: () {},
-                    ),
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Obx(
-                      () => AppButton("Log in",
-                          loading: controller.isLoading.value,
-                          axisSize: MainAxisSize.max,
-                          color: context.primary,
-                          borderRadius: 5,
-                          onPressed: controller.trySubmitLogin),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.facebook_outlined, color: context.primary),
-                      AppButton(
-                        "Log in with Facebook",
-                        textColor: context.primary,
-                        type: ButtonType.text,
-                        onPressed: () => Get.toNamed(Routes.dashBoard),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    const Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 40.0),
-                      child: Text(
-                        "OR",
-                        style: context.bodyText2.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: context.onSecondary.withOpacity(.5),
-                        ),
+                      () => AppButton(
+                        "Sign In",
+                        loading: controller.isLoading.value,
+                        axisSize: MainAxisSize.max,
+                        color: context.primary,
+                        borderRadius: 5,
+                        onPressed: controller.trySubmitSignUp,
                       ),
                     ),
-                    const Expanded(child: Divider()),
-                  ]),
+                  ),
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Don’t have an account? ',
+                          text: 'Already have an account? ',
                           style: TextStyle(
                             color: context.onSecondary.withOpacity(.5),
                           ),
                         ),
                         TextSpan(
-                            text: ' Sign up.',
+                            text: ' Sign In.',
                             style: context.bodyText2.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: context.primary),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.toNamed(Routes.registerPage)),
+                              ..onTap = () => Get.back()),
                       ],
                     ),
                   ),
@@ -130,10 +115,6 @@ class LoginPageView extends GetView<LoginPageController> {
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: const Bottom(
-        text: "Instagram от Facebook",
-        textOnTap: "",
       ),
     );
   }

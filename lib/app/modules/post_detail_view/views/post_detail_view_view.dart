@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../../core/styles/style.dart';
-import '../../main_page/models/post_model.dart';
-import '../../main_page/widgets/post_record.dart';
+import '../../home_page/models/post_model.dart';
+import '../../home_page/widgets/post_record.dart';
 import '../controllers/post_detail_view_controller.dart';
 
 class PostDetailViewView extends GetView<PostDetailViewController> {

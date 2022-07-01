@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:instagram/app/modules/home_page/controllers/home_page_controller.dart';
 
 import '../../../core/styles/style.dart';
 import '../../../core/utilities/image.dart';
-import '../controllers/main_page_controller.dart';
 import '../models/post_model.dart';
 import 'heart_animation.dart';
 
-class PostNewFeed extends GetView<MainPageController> {
+class PostNewFeed extends GetView<HomePageController> {
   const PostNewFeed({
     Key? key,
     required this.postModel,
@@ -61,6 +60,7 @@ class PostNewFeed extends GetView<MainPageController> {
                     key: controller.itemKey,
                     height: 375,
                     child: PageView.builder(
+                      physics: const BouncingScrollPhysics(),
                       controller: controller.imageCtr,
                       itemCount: postModel.imgUrl.length,
                       onPageChanged: (index) => controller.updateIndex(index),
@@ -124,18 +124,19 @@ class PostNewFeed extends GetView<MainPageController> {
                 () => Row(
                   children: [
                     HeartAnimation(
-                      child: IconButton(
-                          onPressed: () {
-                            postModel.isLike.toggle();
-                          },
-                          icon: postModel.isLike.value
-                              ? const Icon(
-                                  CupertinoIcons.heart_fill,
-                                  color: Colors.red,
-                                )
-                              : const Icon(
-                                  CupertinoIcons.heart,
-                                )),
+                      child: InkWell(
+                        onTap: () {
+                          postModel.isLike.toggle();
+                        },
+                        child: postModel.isLike.value
+                            ? SvgPicture.asset(
+                                AppImage.iconHeartFill,
+                                color: Colors.red,
+                              )
+                            : SvgPicture.asset(
+                                AppImage.iconHeart,
+                              ),
+                      ),
                       duration: const Duration(milliseconds: 200),
                     ),
                     IconButton(
@@ -247,11 +248,11 @@ class PostNewFeed extends GetView<MainPageController> {
 
   Widget _itemBuilder(MapEntry<int, dynamic> entry) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
       child: GestureDetector(
         child: Container(
-          height: 4,
-          width: 50,
+          height: 7,
+          width: 7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: (controller.current.value != entry.key

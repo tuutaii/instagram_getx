@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:instagram/app/widgets/commons/circle_avatar.dart';
 
 import '../../../core/styles/style.dart';
 import '../models/profile_story.dart';
@@ -7,35 +7,25 @@ class ProfileStory extends StatelessWidget {
   const ProfileStory({
     Key? key,
     required this.profileStoryModel,
+    this.onTap,
   }) : super(key: key);
 
   final ProfileStoryModel profileStoryModel;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 80,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          height: 80,
+          child: Column(
             children: [
-              Container(
-                width: 60.0,
-                height: 60.0,
-                decoration: BoxDecoration(
-                  border: Border.all(color: context.dividerColor, width: 1),
-                  shape: BoxShape.circle,
-                ),
-                margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: CircleAvatar(
-                  backgroundColor: Get.isDarkMode
-                      ? Colors.white.withOpacity(.8)
-                      : Colors.white,
-                  child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Image.asset(profileStoryModel.imgUrl)),
-                ),
+              CustomCircleAvatar(
+                profileStoryModel.imgUrl,
+                radius: 25,
               ),
               Text(
                 profileStoryModel.description,
@@ -43,7 +33,7 @@ class ProfileStory extends StatelessWidget {
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

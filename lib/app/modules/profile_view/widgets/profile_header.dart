@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:instagram/app/modules/main_page/models/post_model.dart';
 import 'package:instagram/app/modules/profile_view/controllers/profile_view_controller.dart';
 import 'package:instagram/app/routes/app_pages.dart';
 
 import '../../../core/styles/style.dart';
 import '../../../core/utilities/image.dart';
 import '../../../widgets/commons/app_button.dart';
+import '../../home_page/models/post_model.dart';
 
 class ProfileHeader extends GetView<ProfileViewController> {
   const ProfileHeader({
@@ -69,7 +69,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                Get.arguments ?? "Tài Tàii",
+                Get.arguments ?? "User Name",
                 style: context.subtitle2,
               ),
               Text(alias ?? "my name"),

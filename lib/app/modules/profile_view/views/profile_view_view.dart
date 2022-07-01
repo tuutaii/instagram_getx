@@ -1,10 +1,11 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:instagram/app/core/utilities/image.dart';
-import 'package:instagram/app/modules/main_page/models/post_model.dart';
+import 'package:instagram/app/routes/app_pages.dart';
 import 'package:instagram/app/widgets/commons/app_button.dart';
 
 import '../../../core/styles/style.dart';
+import '../../home_page/models/post_model.dart';
 import '../controllers/profile_view_controller.dart';
 import '../models/follow_suggest_model.dart';
 import '../models/profile_story.dart';
@@ -28,7 +29,7 @@ class ProfileViewView extends GetView<ProfileViewController> {
           children: [
             Icon(Icons.lock, size: 20, color: context.onSurface),
             AppButton(
-              Get.arguments,
+              Get.arguments ?? "User Name",
               type: ButtonType.text,
               textColor: context.onSurface,
               fontSize: 20,
@@ -139,7 +140,9 @@ class ProfileViewView extends GetView<ProfileViewController> {
           scrollDirection: Axis.horizontal,
           children: [
             ...profileStory
-                .map((e) => ProfileStory(profileStoryModel: e))
+                .map((e) => ProfileStory(
+                    profileStoryModel: e,
+                    onTap: () => Get.toNamed(Routes.storyDetail)))
                 .toList(),
           ],
         ),

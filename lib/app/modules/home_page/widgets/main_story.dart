@@ -18,8 +18,8 @@ class MainStory extends StatelessWidget {
         InkWell(
           onTap: () {},
           child: Container(
-            width: 60.0,
-            height: 60.0,
+            width: 70.0,
+            height: 70.0,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 stops: [.2, .6, .2],
